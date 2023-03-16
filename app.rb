@@ -11,7 +11,7 @@ set :port, ENV["PORT"] || "8080"
 
 after do
   headers(
-    { 'X-Frame-Options' => "ALLOW-FROM #{ENV.fetch('ALLOW_FROM_URLS')}" },
+    { 'X-Frame-Options' => 'ALLOW-FROM ai-mentor.onrender.com' },
   )
 end
 
