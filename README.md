@@ -8,6 +8,15 @@
 
 AI メンターを使ってみる → https://jr.mitou.org/ai-mentor
 
+<br>
 
+## AI メンターのデモ動画
 
-Copyright &copy; 未踏ジュニア実行委員会
+https://user-images.githubusercontent.com/155807/225740360-6bc22956-f9f7-40ab-bd8b-352a1aa6816f.mp4
+
+<br>
+
+## Credits
+
+- License: [The MIT License](https://github.com/mitou/ai-mentor/blob/main/LICENSE.md)
+- Copyright: &copy; 未踏ジュニア実行委員会
