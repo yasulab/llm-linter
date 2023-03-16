@@ -21,8 +21,7 @@ end
 
 post '/chat' do
   input_text = params[:input_text]
-
-  response = chat_gpt_request(input_text)
+  response   = chat_gpt_request(input_text)
 
   content_type :json
   { response: response }.to_json
