@@ -9,6 +9,12 @@ end
 set :bind, "0.0.0.0"
 set :port, ENV["PORT"] || "8080"
 
+after do
+  headers(
+    { 'X-Frame-Options' => "ALLOW-FROM #{ENV.fetch('ALLOW_FROM_URLS')}" },
+  )
+end
+
 get '/' do
   erb :index
 end
