@@ -6,6 +6,9 @@ OpenAI.configure do |config|
   config.organization_id = ENV.fetch('OPENAI_ORGANIZATION') # Optional.
 end
 
+set :bind, "0.0.0.0"
+set :port, ENV["PORT"] || "8080"
+
 get '/' do
   erb :index
 end
