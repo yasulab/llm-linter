@@ -146,6 +146,20 @@
       this.disabled = false;
       hideThinkingAnimation();
     };
+
+    const inputText = document.getElementById('inputText');
+    const charCount = document.getElementById('inputLength');
+
+    // 入力画面の内容が変更されるたびに文字数を更新する関数
+    function updateCharCount() {
+      charCount.innerText = inputText.value.length;
+    }
+
+    // 入力画面の内容が変更されたときに updateCharCount 関数を実行
+    inputText.addEventListener('input', updateCharCount);
+
+    // 初期の文字数を設定
+    updateCharCount();
   </script>
 </body>
 </html>
