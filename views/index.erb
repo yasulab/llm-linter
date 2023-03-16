@@ -15,7 +15,14 @@
       font-size: 16px;
     }
     button {
-      margin: 1em; /* 1emの余白を追加 */
+      margin: 0.5em 1em; /* 1emの余白を追加 */
+    }
+    /* スマホの画面サイズのときに適用するスタイル */
+    @media screen and (max-width: 768px) {
+      button {
+        font-size: 1.2em;   /* フォントサイズを大きくする */
+        padding: 0.5em 1em; /* パディングを追加してボタンを大きく見せる */
+      }
     }
 
     .hidden {
