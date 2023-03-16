@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI メンター - 未踏ジュニア</title>
+  <style>
+    .hidden {
+      display: none;
+    }
+    textarea, #result {
+      width: 100%;
+      box-sizing: border-box;
+    }
+    textarea {
+      height: 150px;
+    }
+    #result {
+      height: 100%;
+      border: 1px solid #ccc;
+      padding: 10px;
+      padding-bottom: 2em;
+      overflow-y: scroll;
+      margin-top: 10px;
+      position: relative;
+    }
+    #thinking-animation {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+
+    #result-placeholder {
+      color: #888;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+</head>
+<body>
+  <form id="chat-form">
+    <textarea id="input-text" name="input_text" required placeholder="提案書の概要を入力してください（上限：500文字）" maxlength="500"></textarea>
+    <button type="submit" id="submit-btn">AI に提案書の文章を見てもらう</button>
+    <button type="button" id="sample-text-btn">サンプル文章を入力する</button>
+    <span id="char-count">0</span>/500
+  </form>
+  <div id="result"><span id="result-placeholder">ココに AI の回答が表示されます</span></div>
+  <div id="thinking-animation" style="display: none; margin-top: -9em; margin-bottom: 0; margin-left: 1em;">
+    AI が回答を考えています<span id="dots"></span>
+  </div>
+
+  <script>
+    const sampleText = "自宅で手軽に筋トレができるVRソフトです。VRゴーグルを装着し、椅子などを補助に利用し、自分の体重(自重)でトレーニングができます。激しく動く有酸素運動とは逆で、この3部作は美しい映像と音楽に包まれてリラックスしながらゆっくり動くワークアウトなので幅広い年代の方の運動能力、基礎体力の向上、健康維持に役立ちます。省スペースでもあります。";
+    const md = window.markdownit();
+    let dotAnimation;
+
+    function updateDots() {
+      const dots = document.getElementById("dots");
+      dots.textContent = dots.textContent.length < 3 ? dots.textContent + '.' : '';
+    }
+
+    document.getElementById("chat-form").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const inputText = document.getElementById("input-text").value;
+      const resultDiv = document.getElementById("result");
+      const thinkingAnimation = document.getElementById("thinking-animation");
+      const submitBtn = document.getElementById("submit-btn");
+
+      // Clear output screen if there's content
+      resultDiv.innerHTML = '<span id="result-placeholder">ココに AI の回答が表示されます</span>';
+
+      // Show "AI is thinking" animation
+      thinkingAnimation.style.display = 'block';
+      dotAnimation = setInterval(updateDots, 500);
+      submitBtn.disabled = true;
+
+      // Send request and display ChatGPT response
+      const response = await fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ input_text: inputText })
+      });
+      const data = await response.json();
+
+      // Hide "AI is thinking" animation
+      clearInterval(dotAnimation);
+      thinkingAnimation.style.display = 'none';
+      submitBtn.disabled = false;
+
+      // Convert Markdown to HTML and display
+      resultDiv.innerHTML = md.render(data.response);
+    });
+
+    document.getElementById("sample-text-btn").addEventListener("click", () => {
+      document.getElementById("input-text").value = sampleText;
+      updateCharCount();
+    });
+
+    const charCount = document.getElementById("char-count");
+    const inputTextArea = document.getElementById("input-text");
+    
+    inputTextArea.addEventListener("input", updateCharCount);
+
+    function updateCharCount() {
+      charCount.textContent = inputTextArea.value.length;
+    }
+  </script>
+</body>
+</html>
