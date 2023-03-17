@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2023 [未踏ジュニア実行委員会](https://jr.mitou.org/)
+Copyright (c) 2023 [@yasulab](https://twitter.com/yasulab)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
