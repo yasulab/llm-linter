@@ -10,7 +10,7 @@ end
 set :bind, "0.0.0.0"
 set :port, ENV["PORT"] || "8080"
 
-set :allow_origin,   'https://jr.mitou.org http://localhost:4000'
+set :allow_origin,   'https://jr.mitou.org http://localhost:4000 http://localhost:8080'
 set :allow_methods,  'GET,HEAD,POST'
 set :allow_headers,  'content-type,if-modified-since'
 set :expose_headers, 'location,link'
@@ -35,7 +35,7 @@ def get_few_shot
   2. Show a few ideas that they can do to make the sentences more explicitly.
   3. Give one example sentence that follows the ideas but keep their taste remain and never modify their project for their creativity.
 
-  The following is user's input. Your output should be in Japanese, started with '# AI メンターのフィードバック', and formatted in Markdown.
+  The following is user's input. Your output should be in Japanese, started with '# AI からの文章フィードバック', and formatted in Markdown.
 
 
   HINT_FOR_AI
