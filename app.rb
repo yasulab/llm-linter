@@ -41,7 +41,7 @@ def get_few_shot
   HINT_FOR_AI
 end
 
-  def chat_gpt_request(user_query)
+def chat_gpt_request(user_query)
   few_shot = get_few_shot()
   client   = OpenAI::Client.new
   response = client.chat(
