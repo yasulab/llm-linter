@@ -6,6 +6,12 @@
 
 <br>
 
+## デモ動画
+
+https://user-images.githubusercontent.com/155807/225800975-62e6baa0-cf7e-4db6-8202-08295e3b9fac.mp4
+
+<br>
+
 ## Credits
 
 - License: [The MIT License](https://github.com/yasulab/gpt-linter/blob/main/LICENSE.md)
