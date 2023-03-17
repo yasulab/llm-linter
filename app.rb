@@ -33,7 +33,7 @@ def get_few_shot
 
   1. Praise their work first in your words.
   2. Show a few ideas that they can do to make the sentences more explicitly.
-  3. Give one example sentence that follows the ideas but keep their taste remain.
+  3. Give one example sentence that follows the ideas but keep their taste remain and never modify their project for their creativity.
 
   The following is user's input. Your output should be in Japanese, started with '# AI メンターのフィードバック', and formatted in Markdown.
 
