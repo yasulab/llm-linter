@@ -11,8 +11,16 @@
       padding: 0;
     }
     p {
+      color: #242424;
       font-family: 'Noto Sans JP', sans-serif;
     }
+    a {
+      text-decoration: none;
+    }
+    a:hover{
+      text-decoration: underline;
+    }
+    
     textarea, #resultDiv {
       font-family: 'Noto Sans JP', sans-serif;
       font-size: 16px;
@@ -72,6 +80,11 @@
     #result-placeholder {
       color: #777;
     }
+
+    footer {
+      color: #777;
+      opacity: 0.8;
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
 </head>
@@ -79,12 +92,12 @@
 <body>
   <div id="container">
     <p>
-      <a href=' target='_blank' rel='noopener''>未踏ジュニア</a>応募予定者向けに、提案書の文章チェックを <a href='https://twitter.com/hashtag/ChatGPT' target='_blank' rel='noopener'>#ChatGPT</a> で支援するシステムです。
+      <a href='https://jr.mitou.org/' target='_blank' rel='noopener'>未踏ジュニア</a>応募予定者向けに、提案書の文章チェックを <a href='https://twitter.com/hashtag/ChatGPT' target='_blank' rel='noopener'>#ChatGPT</a> で支援するシステムです。
       <small>(※ 非公式のツールです)</small>
     </p>
     <p>
       <a href='https://twitter.com/hashtag/ChatGPT' target='_blank' rel='noopener'>#ChatGPT</a> の機能を大幅に制限しています。<a href='https://chat.openai.com/chat' target='_blank' rel='noopener'>OpenAI アカウントを作る</a>と制限無しで使えます。
-      <small>(<a href='https://openai.com/policies/terms-of-use#:~:text=You%20must%20be%20at%20least%2013%20years%20old%20to%20use%20the%20Services.%20If%20you%20are%20under%2018%20you%20must%20have%20your%20parent%20or%20legal%20guardian%E2%80%99s%20permission%20to%20use%20the%20Services.' target='_blank' rel='noopener'>13歳以上</a>のみ。18歳未満は保護者の許可が必要です)</small>
+      <small>(※ <a href='https://openai.com/policies/terms-of-use#:~:text=You%20must%20be%20at%20least%2013%20years%20old%20to%20use%20the%20Services.%20If%20you%20are%20under%2018%20you%20must%20have%20your%20parent%20or%20legal%20guardian%E2%80%99s%20permission%20to%20use%20the%20Services.' target='_blank' rel='noopener'>13歳以上</a>のみ。18歳未満は保護者の許可が必要です)</small>
       
     </p>
     <textarea id="inputText" rows="8" cols="80" maxlength="500" placeholder="提案書の文章を入力してください（上限：500文字）"></textarea><br>
@@ -96,6 +109,11 @@
     <p style="display: none;">AI が回答を考えています...</p>
   </div>
 
+  <footer>
+    <p>
+      <center><small>Created by <a href='https://twitter.com/yasulab' target='_blank' rel='noopener'>@yasulab</a> for you.</small></center>
+    </p>
+  </footer>
   <script>
     const sampleTexts = [
       "自宅で手軽に筋トレができるVRソフトです。VRゴーグルを装着し、椅子などを補助に利用し、自分の体重(自重)でトレーニングができます。激しく動く有酸素運動とは逆で、この3部作は美しい映像と音楽に包まれてリラックスしながらゆっくり動くワークアウトなので幅広い年代の方の運動能力、基礎体力の向上、健康維持に役立ちます。省スペースでもあります。",
