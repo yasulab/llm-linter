@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'sinatra/cors'
 require 'ruby/openai'
 
 OpenAI.configure do |config|
@@ -9,17 +10,16 @@ end
 set :bind, "0.0.0.0"
 set :port, ENV["PORT"] || "8080"
 
-after do
-  headers(
-    { 'X-Frame-Options' => 'ALLOW-FROM ai-mentor.onrender.com' },
-  )
-end
+set :allow_origin,   'https://jr.mitou.org http://localhost:4000'
+set :allow_methods,  'GET,HEAD,POST'
+set :allow_headers,  'content-type,if-modified-since'
+set :expose_headers, 'location,link'
 
 get '/' do
   erb :index
 end
 
-post '/chat' do
+post '/gpt' do
   input_text = params[:input_text]
   response   = chat_gpt_request(input_text)
 

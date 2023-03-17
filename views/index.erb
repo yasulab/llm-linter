@@ -132,7 +132,7 @@
 
       // APIリクエストを行う処理をここに追加してください。
       // Send request and display ChatGPT response
-      const response = await fetch('/chat', {
+      const response = await fetch('/gpt', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams({ input_text: inputText })
