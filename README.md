@@ -6,12 +6,6 @@
 
 <br>
 
-## AI メンターのデモ動画
-
-https://user-images.githubusercontent.com/155807/225740360-6bc22956-f9f7-40ab-bd8b-352a1aa6816f.mp4
-
-<br>
-
 ## Credits
 
 - License: [The MIT License](https://github.com/yasulab/gpt-linter/blob/main/LICENSE.md)
