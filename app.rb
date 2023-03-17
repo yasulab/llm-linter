@@ -10,7 +10,7 @@ end
 set :bind, "0.0.0.0"
 set :port, ENV["PORT"] || "8080"
 
-set :allow_origin,   'https://jr.mitou.org http://localhost:4000 http://localhost:8080'
+set :allow_origin,   'https://gpt-linter.onrender.com http://localhost:8080'
 set :allow_methods,  'GET,HEAD,POST'
 set :allow_headers,  'content-type,if-modified-since'
 set :expose_headers, 'location,link'
