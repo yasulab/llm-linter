@@ -27,7 +27,7 @@ post '/gpt' do
   { response: response }.to_json
 end
 
-def get_few_shot
+def get_prompt
   <<-HINT_FOR_AI
   As a AI Mentor you are checking Japanese sentences on a project proposed by young creator who are willing to apply Mitou Junior program. Do the following step by step:
 
@@ -42,7 +42,7 @@ def get_few_shot
 end
 
 def chat_gpt_request(user_query)
-  few_shot = get_few_shot()
+  prompt   = get_prompt()
   client   = OpenAI::Client.new
   response = client.chat(
                     parameters: {
@@ -50,7 +50,7 @@ def chat_gpt_request(user_query)
                            messages: [
                              {
                                role: "user",
-                               content: few_shot + user_query,
+                               content: prompt + user_query,
                              }
                            ],
                            temperature: 0.7,
