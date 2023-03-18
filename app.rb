@@ -41,7 +41,12 @@ def get_prompt
   HINT_FOR_AI
 end
 
+def failed_no_inputs_given; "# AI からの文章フィードバック\n\n未踏ジュニアに興味を持っていただきありがとうございます！私は提案書の概要や、提案書の文章をチェックする AI です。\n\n「サンプル文章を入力する」ボタンを押してから、「AI の文章をみてもらう」ボタンを押すと、私の回答例を確認できます。ぜひ試してみてくださいね！" end
+def failed_longer_than_500; "# AI からの文章フィードバック\n\nすみません！私が一度に見れる文章は500文字までとなります。500文字以内に区切ってから、再度「AI の文章をみてもらう」ボタンを押していただけると嬉しいです。" end
+
 def chat_gpt_request(user_query)
+  return failed_no_inputs_given if user_query.size == 0
+  return failed_longer_than_500 if user_query.size > 500
   prompt   = get_prompt()
   client   = OpenAI::Client.new
   response = client.chat(
@@ -66,3 +71,4 @@ def chat_gpt_request(user_query)
 
   response.dig('choices', 0, 'message', 'content')
 end
+
