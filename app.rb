@@ -33,13 +33,8 @@ def get_prompt
 
   Show a few ideas that they may make it more attractive but keep their taste remain and *never* modify their project for their creativity. Keep in mind that the 200 words is too short to follow all of your ideas.
 
-  Output has to be *a suggestion* in Japanese, started with '# AI によるコメント', and formatted in Markdown. If you show your understanding on the input, you should start with like "My understanding of your project is ..."
+  Output has to be *a suggestion* in Japanese, *never* show your example, started with '# AI によるコメント', and formatted in Markdown. Show your understand of a project and start your comment from "私の理解では". Also make sure to note that their abstract may be already perfect enough, nothing has to be changed.
 
-  Learn how to count Japanese words by using the following examples:
-
-  * 21 words: 自宅で手軽に筋トレができるVRソフトです。
-  * 41 words: 逆方向に動く2つのキューブを同時にゴールに持っていく、シンプルなパズルゲームです。
-  * 52 words: 「Visible」はNode.jsで開発されるオープンソースのWebアクセシビリティーテストツールです。
 
   HINT_FOR_AI
 end
@@ -72,13 +67,12 @@ def chat_gpt_request(user_query)
                          }
                     )
 
+  d2y = 135
   p_tokens = response.dig 'usage', 'prompt_tokens'
   c_tokens = response.dig 'usage', 'completion_tokens'
-  t_tokens = response.dig 'usage', 'total_tokens'
   expenses = (p_tokens * 0.03 / 1000) + (c_tokens * 0.06 / 1000) # dollars
-  puts "Prmpt Tokens: " + p_tokens.to_s
-  puts "Cmplt Tokens: " + c_tokens.to_s
-  puts "Total Tokens: " + t_tokens.to_s
+  puts "Prmpt Tokens: " + p_tokens.to_s + " (#{p_tokens * 0.03 / 1000 * d2y}円)"
+  puts "Cmplt Tokens: " + c_tokens.to_s + " (#{c_tokens * 0.06 / 1000 * d2y}円)"
   puts "掛かった料金: " + (expenses * 135).floor(2).to_s + "円"
   response.dig('choices', 0, 'message', 'content')
 end
