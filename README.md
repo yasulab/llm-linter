@@ -1,8 +1,8 @@
-# ChatGPT を用いた文章チェック支援ツール
+# ChatGPT による概要文のコメントシステム（※ 実験的な非公式のシステムです）
 
-未踏ジュニアの応募予定者向けに、[提案書](https://jr.mitou.org/download)の文章チェックを [#ChatGPT](https://twitter.com/hashtag/ChatGPT) で支援するシステムです。[#ChatGPT](https://twitter.com/hashtag/ChatGPT) の機能を一部制限した状態で使っています。[OpenAI アカウントを作る](https://chat.openai.com/chat)と制限無しで使えて便利です。
+未踏ジュニアの応募予定者向けに、[提案書](https://jr.mitou.org/download)の概要文を [#ChatGPT](https://twitter.com/hashtag/ChatGPT) が読んで、コメントする実験的かつ非公式なシステムです。 **（:warning: コメントの「正しさ」が保証されないため、コメントを鵜呑みにしないようご注意ください）**
 
-未踏ジュニア応募者に [#ChatGPT](https://twitter.com/hashtag/ChatGPT) の存在を知ってもらうことを主な目的としています。AI と対話しながら提案書の文章の質を上げるキッカケになれば嬉しいです。
+[#ChatGPT](https://twitter.com/hashtag/ChatGPT) の機能を一部制限した状態で使っています。[OpenAI アカウントを作る](https://chat.openai.com/chat)と制限無しで使えて便利です。(:warning: OpenAI の利用規約に基づき保護者から許可をもらって、もしくは保護者が代わりに利用する想定です。詳しくは[利用規約](https://openai.com/policies/terms-of-use.)をご確認ください)
 
 <br>
 
