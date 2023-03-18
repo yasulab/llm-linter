@@ -1,4 +1,4 @@
-# ChatGPT を用いた文章校正支援
+# ChatGPT を用いた文章チェック支援ツール
 
 未踏ジュニアの応募予定者向けに、[提案書](https://jr.mitou.org/download)の文章チェックを [#ChatGPT](https://twitter.com/hashtag/ChatGPT) で支援するシステムです。[#ChatGPT](https://twitter.com/hashtag/ChatGPT) の機能を一部制限した状態で使っています。[OpenAI アカウントを作る](https://chat.openai.com/chat)と制限無しで使えて便利です。
 
