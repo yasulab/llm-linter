@@ -35,7 +35,7 @@ def get_prompt
   2. Show a few ideas that they can do to make the sentences more explicitly.
   3. Give one example sentence that follows the ideas but keep their taste remain and never modify their project for their creativity.
 
-  Your output should be casual in Japanese, started with '# AI からの文章フィードバック', and formatted in Markdown.
+  Output has to be within 500 words in Japanese, started with '# AI からの文章フィードバック', and formatted in Markdown.
 
 
   HINT_FOR_AI
