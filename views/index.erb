@@ -53,7 +53,7 @@
       border: 5px solid #f3f3f3;
       border-top: 5px solid #3498db;
       border-radius: 50%;
-      width: 30px;
+      width:  30px;
       height: 30px;
       animation: spin 1s linear infinite;
       display: inline-block;
@@ -86,22 +86,29 @@
       color: #777;
       opacity: 0.8;
     }
+
+    ul {
+      padding-right: 50px;
+    }
+    li {
+      margin-bottom: 10px;
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
 </head>
 
 <body>
   <div id="container">
-    <p>
-      <a href='https://jr.mitou.org/' target='_blank' rel='noopener'>未踏ジュニア</a>応募予定者向けに、<a href='https://jr.mitou.org/download' target='_blank' rel='noopener'>提案書</a>の文章チェックを <a href='https://twitter.com/hashtag/ChatGPT' target='_blank' rel='noopener'>#ChatGPT</a> で支援するシステムです。<small>(※ 非公式のツールです)</small>
-    </p>
-    <p>
-      <a href='https://twitter.com/hashtag/ChatGPT' target='_blank' rel='noopener'>#ChatGPT</a> の機能を大幅に制限しています。<a href='https://chat.openai.com/chat' target='_blank' rel='noopener'>OpenAI アカウントを作る</a>と制限無しで使えます。<small>(※ <a href='https://openai.com/policies/terms-of-use#:~:text=You%20must%20be%20at%20least%2013%20years%20old%20to%20use%20the%20Services.%20If%20you%20are%20under%2018%20you%20must%20have%20your%20parent%20or%20legal%20guardian%E2%80%99s%20permission%20to%20use%20the%20Services.' target='_blank' rel='noopener'>13歳以上</a>のみ。18歳未満は保護者の許可が必要です)</small>      
-    </p>
-    <textarea id="inputText" rows="8" cols="80" maxlength="500" placeholder="提案書の文章を入力してください&#10;（上限：500文字）"></textarea><br>
-    <button id="submitButton">AI に文章を見てもらう</button>
-    <button id="sampleButton">サンプル文章を入力する</button>
-    <span id="inputLength">0</span> / 500
+    <ul>
+      <li><a href='https://jr.mitou.org/download' target='_blank' rel='noopener'>未踏ジュニアの提案書</a>の概要文（200文字以内）を <a href='https://twitter.com/hashtag/ChatGPT' target='_blank' rel='noopener'>#ChatGPT</a> が見てみる実験的なシステムです。<small>(※ 非公式のツールです)</small></li>
+      <li><a href='https://twitter.com/hashtag/ChatGPT' target='_blank' rel='noopener'>#ChatGPT</a> の機能を大幅に制限しています。<a href='https://chat.openai.com/chat' target='_blank' rel='noopener'>OpenAI アカウントを作る</a>と制限無しで使えます。<small>(※ <a href='https://openai.com/policies/terms-of-use#:~:text=You%20must%20be%20at%20least%2013%20years%20old%20to%20use%20the%20Services.%20If%20you%20are%20under%2018%20you%20must%20have%20your%20parent%20or%20legal%20guardian%E2%80%99s%20permission%20to%20use%20the%20Services.' target='_blank' rel='noopener'>13歳以上</a>のみ。18歳未満は保護者の許可が必要です)</small>      </li>
+      <li>タイトルについては「<a href='https://zenn.dev/reputeless/articles/idea-mitoujr' target='_blank' rel='noopener'>未踏ジュニア、伝わる提案書を作る 5 つのコツ</a>」をご参照ください。</li>
+    </ul>
+
+    <textarea id="inputText" rows="8" cols="80" maxlength="200" placeholder="提案書の概要を入力してください&#10;（上限：200文字）"></textarea><br>
+    <button id="submitButton">AI に概要文を見てもらう</button>
+    <button id="sampleButton">サンプル概要文を入力する</button>
+    <span id="inputLength">0</span> / 200
     <div id="result"><span id='result-placeholder'>ココに AI の回答が表示されます</span></div>
     <div class="loader" style="display: none;"></div>
     <p style="display: none;">AI が回答を考えています...</p>
@@ -109,7 +116,7 @@
 
   <footer>
     <p>
-      <center><small>Created by <a href='https://twitter.com/yasulab/status/1636938702290292737' target='_blank' rel='noopener'>@yasulab</a> for you.<br>(<a href="https://github.com/yasulab/gpt-linter" target="_blank" rel="noopener">GitHub</a>)</small></center>
+      <center><small>Created by <a href='https://twitter.com/yasulab/status/1636938702290292737' target='_blank' rel='noopener'>@yasulab</a> for you. Powered by <a href='https://openai.com/product/gpt-4' target='_blank' rel='noopener'>GPT-4</a>.<br>(<a href="https://github.com/yasulab/gpt-linter" target="_blank" rel="noopener">GitHub</a>)</small></center>
     </p>
   </footer>
   <script>
@@ -121,7 +128,7 @@
       "編模様は編み物を支援するツールです。編み物の本などは、モノクロで図も小さく自分の考えた絵では編むことはできません。そこで自分の描いたイラストを編もうとすると方眼紙にイラストを描いてそれを数えながら編んでいくので気が遠くなるほどのの手間がかかります。編模様は自分で描いた絵を編み図にカラーで変換し、色が変わるまでの数などを表示し編み間違いを減らし、オリジナルの作品を効率的に作れるようにします。",
       "DetExploit は WMI (Windows Management Instrumentation)やレジストリなどを参照することによって取得したシステム上のアプリケーションの情報と様々なデータベースから取得した情報を照合することによってセキュリティ的に脆弱なソフトウェアを検知し、ユーザーに通知するソフトウェアです。",
       "「Visible」はNode.jsで開発されるオープンソースのWebアクセシビリティーテストツールです。WebサイトのURLやソースコードからアクセシビリティー上の問題点を検出するほか、アルゴリズムや機械学習プラットフォームを有効活用して修正を提案します。",
-      "Mer はリコーダーを基にして、色々な機能を搭載したウィンドシンセサイザーです。発音が簡単なので初心者でも完成度の高い演奏を体験できますし、自然な呼吸を応用して演奏するので健康に良いです。更に、サミング奏法とオクターブジャンプ奏法で高速かつ正確な演奏ができます。加えて、MIDI 出力ができるので、ユーザーの好きな音源で演奏できます。また、運指や息の感度を変更したり、アルペジオを割り当てたりできます。"
+      "Merはリコーダーを基にして、色々な機能を搭載したウィンドシンセサイザーです。発音が簡単なので初心者でも完成度の高い演奏を体験できますし、自然な呼吸を応用して演奏するので健康に良いです。更に、サミング奏法とオクターブジャンプ奏法で高速かつ正確な演奏ができます。加えて、MIDI出力ができるので、ユーザーの好きな音源で演奏できます。また、運指や息の感度を変更したり、アルペジオを割り当てたりできます。"
     ];
 
    function setInputText(text) {
