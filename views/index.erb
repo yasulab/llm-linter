@@ -100,7 +100,7 @@
 <body>
   <div id="container">
     <ul>
-      <li><a href='https://jr.mitou.org/download' target='_blank' rel='noopener'>未踏ジュニアの提案書</a>の概要文（200文字以内）を <a href='https://twitter.com/hashtag/ChatGPT' target='_blank' rel='noopener'>#ChatGPT</a> が見てみる実験的なシステムです。<small>(※ 非公式のツールです)</small></li>
+      <li><a href='https://jr.mitou.org/download' target='_blank' rel='noopener'>未踏ジュニアの提案書</a>の概要文（200文字以内）を <a href='https://twitter.com/hashtag/ChatGPT' target='_blank' rel='noopener'>#ChatGPT</a> がコメントする実験的なシステムです。<small>(※ 非公式のツールです)</small></li>
       <li><a href='https://twitter.com/hashtag/ChatGPT' target='_blank' rel='noopener'>#ChatGPT</a> の機能を大幅に制限しています。<a href='https://chat.openai.com/chat' target='_blank' rel='noopener'>OpenAI アカウントを作る</a>と制限無しで使えます。<small>(※ <a href='https://openai.com/policies/terms-of-use#:~:text=You%20must%20be%20at%20least%2013%20years%20old%20to%20use%20the%20Services.%20If%20you%20are%20under%2018%20you%20must%20have%20your%20parent%20or%20legal%20guardian%E2%80%99s%20permission%20to%20use%20the%20Services.' target='_blank' rel='noopener'>13歳以上</a>のみ。18歳未満は保護者の許可が必要です)</small>      </li>
       <li>タイトルについては「<a href='https://zenn.dev/reputeless/articles/idea-mitoujr' target='_blank' rel='noopener'>未踏ジュニア、伝わる提案書を作る 5 つのコツ</a>」をご参照ください。</li>
     </ul>
@@ -152,12 +152,12 @@
 
     function showThinkingAnimation() {
       const resultDiv = document.getElementById("result");
-      resultDiv.innerHTML = '<div class="loader"></div><p>AI が回答を考えています...</p>';
+      resultDiv.innerHTML = '<div class="loader"></div><p>AI がコメントを考えています...</p>';
     }
 
     function hideThinkingAnimation() {
       const resultDiv = document.getElementById("result");
-      //resultDiv.innerHTML = 'ココに AI の回答が表示されます';
+      //resultDiv.innerHTML = 'ココに AI のコメントが表示されます';
     }
 
     const md = window.markdownit();
