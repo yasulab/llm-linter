@@ -71,9 +71,10 @@ def chat_gpt_request(user_query)
   p_tokens = response.dig 'usage', 'prompt_tokens'
   c_tokens = response.dig 'usage', 'completion_tokens'
   expenses = (p_tokens * 0.03 / 1000) + (c_tokens * 0.06 / 1000) # dollars
-  puts "Prmpt Tokens: " + p_tokens.to_s + " (#{p_tokens * 0.03 / 1000 * d2y}円)"
-  puts "Cmplt Tokens: " + c_tokens.to_s + " (#{c_tokens * 0.06 / 1000 * d2y}円)"
+  puts "Prmpt Tokens: " + p_tokens.to_s + " (#{(p_tokens * 0.03 / 1000 * d2y).floor(2)}円)"
+  puts "Cmplt Tokens: " + c_tokens.to_s + " (#{(c_tokens * 0.06 / 1000 * d2y).floor(2)}円)"
   puts "掛かった料金: " + (expenses * 135).floor(2).to_s + "円"
+
   response.dig('choices', 0, 'message', 'content')
 end
 
