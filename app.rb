@@ -33,7 +33,7 @@ def get_prompt
 
   Show a few ideas that they may make it more attractive but keep their taste remain and *never* modify their project for their creativity. Keep in mind that the 200 words is too short to follow all of your ideas.
 
-  Output has to be *a suggestion* in Japanese, *never* show your example, started with '# AI によるコメント', and formatted in Markdown. Show your understand of a project and start your comment from "私の理解では". Also make sure to note that their abstract may be already perfect enough, nothing has to be changed.
+  Output has to be *a suggestion* in Japanese, *never* show your example, started with '# AI によるコメント', and formatted in Markdown. Show your understand of a project and start your comment from "私の理解が正しければ". Also make sure to note the possibility that their abstract may be already perfect enough, nothing has to be changed.
 
 
   HINT_FOR_AI
