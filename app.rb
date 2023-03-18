@@ -47,18 +47,22 @@ def chat_gpt_request(user_query)
   response = client.chat(
                     parameters: {
                            # https://platform.openai.com/docs/models/gpt-4
-                           #model:  "gpt-3.5-turbo",
-                           model:  "gpt-4",
+                           #model:  'gpt-3.5-turbo',
+                           model:  'gpt-4',
                            messages: [
                              {
-                               role: "user",
-                               content: prompt + user_query,
-                             }
+                               role: 'system',
+                               content: prompt,
+                             },
+                             {
+                               role: 'user',
+                               content: user_query,
+                             },
                            ],
                            temperature: 0.7,
                            #stream: True,
                          }
                     )
 
-  response.dig("choices", 0, "message", "content")
+  response.dig('choices', 0, 'message', 'content')
 end
