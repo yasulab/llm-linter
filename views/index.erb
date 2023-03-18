@@ -109,9 +109,9 @@
     <button id="submitButton">AI に概要文を見てもらう</button>
     <button id="sampleButton">サンプル概要文を入力する</button>
     <span id="inputLength">0</span> / 200
-    <div id="result"><span id='result-placeholder'>ココに AI の回答が表示されます</span></div>
+    <div id="result"><span id='result-placeholder'>ココに AI のコメントが表示されます</span></div>
     <div class="loader" style="display: none;"></div>
-    <p style="display: none;">AI が回答を考えています...</p>
+    <p style="display: none;">AI がコメントを考えています...</p>
   </div>
 
   <footer>
@@ -180,7 +180,7 @@
       });
       const data = await response.json();
 
-      // APIリクエストが完了したら、次のように回答を表示します。
+      // APIリクエストが完了したら、次のようにコメントを表示します。
       const resultDiv = document.getElementById("result");
       resultDiv.innerHTML = md.render(data.response); // Convert Markdown to HTML and display
 
