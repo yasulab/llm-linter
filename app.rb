@@ -39,12 +39,21 @@ def get_prompt
   HINT_FOR_AI
 end
 
-def failed_no_inputs_given; "# AI からの文章フィードバック\n\n未踏ジュニアに興味を持っていただきありがとうございます！私は提案書の概要や、提案書の文章をチェックする AI です。\n\n「サンプル文章を入力する」ボタンを押してから、「AI の文章をみてもらう」ボタンを押すと、私の回答例を確認できます。ぜひ試してみてくださいね！" end
-def failed_longer_than_200; "# AI からの文章フィードバック\n\nすみません！概要文は200文字以内となります。200文字以内に収めてから、再度「AI の文章をみてもらう」ボタンを押していただけると嬉しいです。" end
+def failed_no_inputs_given; "# AI からのコメント\n\n未踏ジュニアに興味を持っていただきありがとうございます！私は提案書の概要文にコメントをする実験的な AI です。(非公式)\n\n「サンプル概要文を入力する」ボタンを押してから、「AI に概要文を見てもらう」ボタンを押すと、私のコメントを確認できます。ぜひ試してみてくださいね！" end
+def failed_longer_than_200; "# AI からのコメント\n\nすみません！概要文は200文字以内となります。200文字以内に収めてから、再度「AI の文章をみてもらう」ボタンを押していただけると嬉しいです。" end
+def failed_after_deadline;  "# AI からのコメント\n\nすみません！2023年度の未踏ジュニア応募〆切は2023年4月8日 23:59 までとなるため、それに伴って実験的な本システムの提供も終了いたしました。\n\nあらためて、未踏ジュニアに興味を持っていただきありがとうございました！" end
+
+def is_after_deadline?
+  puts t1 = Time.new(2023, 4, 8, 23, 59, 59, "+09:00")
+  puts t2 = Time.now.localtime("+09:00")
+  t1 < t2
+end
 
 def chat_gpt_request(user_query)
   return failed_no_inputs_given if user_query.size == 0
   return failed_longer_than_200 if user_query.size > 200
+  return failed_after_deadline  if is_after_deadline?
+
   prompt   = get_prompt()
   client   = OpenAI::Client.new
   response = client.chat(
