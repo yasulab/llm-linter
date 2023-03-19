@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>提案書の概要文に AI がコメントする実験的なシステム（非公式）</title>
+  <style>
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      margin:  0;
+      padding: 0;
+      margin-bottom: 100px;
+    }
+    p {
+      color: #242424;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 98%;
+    }
+    a {
+      text-decoration: none;
+    }
+    a:hover{
+      text-decoration: underline;
+    }
+    
+    textarea, #resultDiv {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 16px;
+    }
+    button {
+      margin-top:    0.5em;
+      margin-right:  0.5em;
+      margin-bottom: 0.5em;
+    }
+    /* スマホの画面サイズのときに適用するスタイル */
+    @media screen and (max-width: 768px) {
+      button {
+        font-size: 1.1em;     /* フォントサイズを大きくする */
+        padding: 0.5em 0.9em; /* パディングを追加してボタンを大きく見せる */
+	display: block;       /* ボタンをブロック要素に変更 */
+      }
+      #inputText {
+        height: 300px; /* 入力画面の高さを1.5倍にする */
+      }
+    }
+
+    #container{
+      margin-top:    1.0em;
+      margin-bottom: 1.0em;
+      margin-left:   auto;
+      margin-right:  auto;
+      padding-left:  0.5em;
+      padding-right: 0.5em;
+      
+      max-width: 840px;
+    }
+    .loader {
+      border: 5px solid #f3f3f3;
+      border-top: 5px solid #3498db;
+      border-radius: 50%;
+      width:  30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    @keyframes spin {
+      0%   { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    textarea, #result {
+      width:  100%;
+      height: 200px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      padding:    1.0em;
+      margin-top: 1.0em;
+      min-height: 100px;
+    }
+    #result {
+      height: 100%;
+      overflow-y: scroll;
+      margin-top: 10px;
+      position: relative;
+    }
+    #result-placeholder {
+      color: #777;
+    }
+
+    footer {
+      color: #777;
+      opacity: 0.7;
+      margin:  0 auto;
+      margin-top:    30px;
+      margin-bottom: 100px;
+      margin-left:   -1px;
+      width:   100%;
+      text-align: center;
+    }
+
+    ul {
+      padding-left:  20px;
+      padding-right: 5px;
+    }
+    li {
+      margin-bottom: 10px;
+    }
+
+    @media screen and (max-width: 848px) {
+      br.ignore-pc {
+	display: none;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <ul>
+      <li><a href='https://jr.mitou.org/download' target='_blank' rel='noopener'>未踏ジュニア提案書</a>の概要文 (200文字以内) に <a href='https://twitter.com/hashtag/ChatGPT' target='_blank' rel='noopener'>#ChatGPT</a> がコメントする実験的なシステムです。<br class='ignore-pc'><small>(※ コメントの「正しさ」が保証されず、場合によっては改悪になる可能性もあるため、非公式のツールです)</small></li>
+      <li><a href='https://twitter.com/hashtag/ChatGPT' target='_blank' rel='noopener'>#ChatGPT</a> の機能を大幅に制限しています。<a href='https://chat.openai.com/chat' target='_blank' rel='noopener'>OpenAI アカウントを作る</a>と制限無しで使えます。<br class='ignore-pc'><small>(※ <a href='https://openai.com/policies/terms-of-use#:~:text=You%20must%20be%20at%20least%2013%20years%20old%20to%20use%20the%20Services.%20If%20you%20are%20under%2018%20you%20must%20have%20your%20parent%20or%20legal%20guardian%E2%80%99s%20permission%20to%20use%20the%20Services.' target='_blank' rel='noopener'>OpenAI の利用規約</a>に基づき保護者から許可を取る、もしくは保護者が代わりにご利用ください)</small>      </li>
+      <li>タイトルについては「<a href='https://zenn.dev/reputeless/articles/idea-mitoujr' target='_blank' rel='noopener'>未踏ジュニア、伝わる提案書を作る 5 つのコツ</a>」をお読みください。</li>
+    </ul>
+  </div>
+
+  <footer><p><small>Created by <a href='https://twitter.com/yasulab/status/1636938702290292737' target='_blank' rel='noopener'>@yasulab</a> for you. Powered by <a href='https://openai.com/product/gpt-4' target='_blank' rel='noopener'>GPT-4</a>.<br>(<a href="/" target="_blank" rel="noopener">Top</a> | <a href="https://github.com/yasulab/gpt-linter" target="_blank" rel="noopener">GitHub</a> | <a href="/policy" target="_blank" rel="noopener">Policy</a> | <a href="/terms" target="_blank" rel="noopener">Terms</a>)</small><small>Created by <a href='https://twitter.com/yasulab/status/1636938702290292737' target='_blank' rel='noopener'>@yasulab</a> for you. Powered by <a href='https://openai.com/product/gpt-4' target='_blank' rel='noopener'>GPT-4</a>.<br>(<a href="/" target="_blank" rel="noopener">Top</a> | <a href="https://github.com/yasulab/gpt-linter" target="_blank" rel="noopener">GitHub</a> | <a href="/policy" target="_blank" rel="noopener">Policy</a> | <a href="/terms" target="_blank" rel="noopener">Terms</a>)</small></p></footer>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H2QMV61YFH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-H2QMV61YFH');
+  </script>
+</body>
+</html>

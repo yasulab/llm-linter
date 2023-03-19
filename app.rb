@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'sinatra/cors'
+require 'sinatra/reloader' if ENV['SINATRA_LOCALHOST']
 require 'ruby/openai'
 require 'cgi'
 
@@ -18,9 +19,9 @@ set :allow_methods,  'GET,HEAD,POST'
 set :allow_headers,  'content-type,if-modified-since'
 set :expose_headers, 'location,link'
 
-get '/' do
-  erb :index
-end
+get '/'       do; erb :index;  end
+get '/policy' do; erb :policy; end
+get '/terms'  do; erb :terms;  end
 
 post '/gpt' do
   input_text = params[:input_text]
@@ -104,7 +105,7 @@ def chat_gpt_request(user_query)
     puts "掛かった時間: #{(end_time - stt_time).floor(1)}秒"
     return failed_on_http_timeout
   end
-  # Sometimes
+  # Return if 500 error happens for some reason
   return failed_on_server_error if response.to_s.include? "Internal Server Error"
 
   p_tokens = response.dig 'usage', 'prompt_tokens'
