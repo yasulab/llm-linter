@@ -93,6 +93,12 @@
     li {
       margin-bottom: 10px;
     }
+
+    @media screen and (max-width: 848px) {
+      br {
+	display: none;
+      }
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
 </head>
@@ -100,8 +106,8 @@
 <body>
   <div id="container">
     <ul>
-      <li><a href='https://jr.mitou.org/download' target='_blank' rel='noopener'>未踏ジュニアの提案書</a>の概要文（200文字以内）に <a href='https://twitter.com/hashtag/ChatGPT' target='_blank' rel='noopener'>#ChatGPT</a> がコメントする実験的なシステムです。<small>(※ コメントの「正しさ」が保証されず、場合によっては改悪になる可能性もあるため、非公式のツールです)</small></li>
-      <li><a href='https://twitter.com/hashtag/ChatGPT' target='_blank' rel='noopener'>#ChatGPT</a> の機能を大幅に制限しています。<a href='https://chat.openai.com/chat' target='_blank' rel='noopener'>OpenAI アカウントを作る</a>と制限無しで使えます。<small>(※ <a href='https://openai.com/policies/terms-of-use#:~:text=You%20must%20be%20at%20least%2013%20years%20old%20to%20use%20the%20Services.%20If%20you%20are%20under%2018%20you%20must%20have%20your%20parent%20or%20legal%20guardian%E2%80%99s%20permission%20to%20use%20the%20Services.' target='_blank' rel='noopener'>13歳以上</a>のみ。18歳未満は保護者の許可が必要です)</small>      </li>
+      <li><a href='https://jr.mitou.org/download' target='_blank' rel='noopener'>未踏ジュニアの提案書</a>の概要文（200文字以内）に <a href='https://twitter.com/hashtag/ChatGPT' target='_blank' rel='noopener'>#ChatGPT</a> がコメントする実験的なシステムです。<br class='ignore-pc'><small>(※ コメントの「正しさ」が保証されず、場合によっては改悪になる可能性もあるため、非公式のツールです)</small></li>
+      <li><a href='https://twitter.com/hashtag/ChatGPT' target='_blank' rel='noopener'>#ChatGPT</a> の機能を大幅に制限しています。<a href='https://chat.openai.com/chat' target='_blank' rel='noopener'>OpenAI アカウントを作る</a>と制限無しで使えます。<br class='ignore-pc'><small>(※ <a href='https://openai.com/policies/terms-of-use#:~:text=You%20must%20be%20at%20least%2013%20years%20old%20to%20use%20the%20Services.%20If%20you%20are%20under%2018%20you%20must%20have%20your%20parent%20or%20legal%20guardian%E2%80%99s%20permission%20to%20use%20the%20Services.' target='_blank' rel='noopener'>OpenAI の利用規約</a>に基づき、保護者から許可をもらって、もしくは保護者が代わりにご利用ください)</small>      </li>
       <li>タイトルについては「<a href='https://zenn.dev/reputeless/articles/idea-mitoujr' target='_blank' rel='noopener'>未踏ジュニア、伝わる提案書を作る 5 つのコツ</a>」をご参照ください。</li>
     </ul>
 
