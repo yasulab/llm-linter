@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/yasulab/ruby-openai
+  revision: d58870a604648f6c6ee230261a35d945e785cebd
+  specs:
+    ruby-openai (3.5.0)
+      httparty (>= 0.18.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -14,8 +21,6 @@ GEM
     rack (2.2.6.4)
     rack-protection (3.0.5)
       rack
-    ruby-openai (3.5.0)
-      httparty (>= 0.18.1)
     ruby2_keywords (0.0.5)
     sinatra (3.0.5)
       mustermann (~> 3.0)
@@ -27,11 +32,10 @@ GEM
 
 PLATFORMS
   arm64-darwin-21
-  x86_64-linux
 
 DEPENDENCIES
   puma
-  ruby-openai
+  ruby-openai!
   sinatra
   sinatra-cors
 

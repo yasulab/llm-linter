@@ -4,5 +4,5 @@ source 'https://rubygems.org'
 
 gem 'sinatra'
 gem 'sinatra-cors'
-gem 'ruby-openai'
+gem 'ruby-openai', git: 'https://github.com/yasulab/ruby-openai'
 gem 'puma'
