@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sinatra/cors'
 require 'ruby/openai'
+require 'cgi'
 
 OpenAI.configure do |config|
   config.access_token    = ENV.fetch('OPENAI_ACCESS_TOKEN')
@@ -98,10 +99,9 @@ def chat_gpt_request(user_query)
   end
   puts "使ったモデル: " + model
 
-  response.dig('choices', 0, 'message', 'content')
+  CGI.escapeHTML(response.dig 'choices', 0, 'message', 'content')
 end
 
 class Float
   def to_yen; self * 135; end
 end
-
