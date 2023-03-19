@@ -54,7 +54,7 @@ def failed_on_api_response;  "# AI からのコメント\n\nすみません！�
 def is_after_deadline?
   t1 = Time.new(2023, 4, 8, 23, 59, 59, "+09:00")
   t2 = Time.now.localtime("+09:00")
-  p(t2)
+  puts t2
   t1 < t2
 end
 
@@ -85,10 +85,15 @@ def chat_gpt_request(user_query)
   }
 
   # This may cause: Net::ReadTimeout - Net::ReadTimeout with #<TCPSocket:(closed)> error
+  # Also measure how long it takes until returns result from OpenAI API.
   begin
+    stt_time = Time.now
     response = client.chat(parameters: params)
+    end_time = Time.now
   rescue => e
-    p e
+    end_time = Time.now
+    puts "エラーの内容: #{e}"
+    puts "掛かった時間: #{(end_time - stt_time).floor(1)}秒"
     return failed_on_api_response
   end
 
@@ -104,6 +109,8 @@ def chat_gpt_request(user_query)
     puts "Prmpt Tokens: #{p_tokens} (#{(p_expenses).to_yen.floor(2)}円)"
     puts "Cmplt Tokens: #{c_tokens} (#{(c_expenses).to_yen.floor(2)}円)"
     puts "掛かった料金: #{(p_expenses + c_expenses).to_yen.floor(2)}円"
+    puts "掛かった時間: #{(end_time - stt_time).floor(0)}秒"
+    puts "使ったモデル: #{model}"
   else
     # Expenses on GPT-3.5-turbo: https://openai.com/pricing
     p_expenses = (p_tokens * 0.002 / 1000) # dollars
@@ -111,8 +118,9 @@ def chat_gpt_request(user_query)
     puts "Prmpt Tokens: #{p_tokens} (#{(p_expenses).to_yen.floor(2)}円)"
     puts "Cmplt Tokens: #{c_tokens} (#{(c_expenses).to_yen.floor(2)}円)"
     puts "掛かった料金: #{(p_expenses + c_expenses).to_yen.floor(2)}円"
+    puts "掛かった時間: #{(end_time - stt_time).floor(0)}秒"
+    puts "使ったモデル: #{model}"
   end
-  puts "使ったモデル: " + model
 
   CGI.escapeHTML(response.dig 'choices', 0, 'message', 'content')
 end
