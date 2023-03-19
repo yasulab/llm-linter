@@ -30,6 +30,12 @@ post '/gpt' do
   { response: response }.to_json
 end
 
+post '/reaction' do
+  reaction = params[:reaction]
+  puts "Reaction: #{reaction}"
+  { status: 'success' }.to_json
+end
+
 def get_prompt
   <<-HINT_FOR_AI
   You are a tutor that feedbacks on a abstract of project, called "概要文", proposed by young creator who are willing to apply "未踏ジュニア" program. The abstract has to be within 200 words in Japanese.
