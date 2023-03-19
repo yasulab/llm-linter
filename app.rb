@@ -6,6 +6,8 @@ require 'cgi'
 OpenAI.configure do |config|
   config.access_token    = ENV.fetch('OPENAI_ACCESS_TOKEN')
   config.organization_id = ENV.fetch('OPENAI_ORGANIZATION') # Optional.
+  config.request_timeout = 180 # 60 by default.
+  # Grabing this PR from fork repo: https://github.com/alexrudall/ruby-openai/pull/192
 end
 
 set :bind, "0.0.0.0"
@@ -43,6 +45,7 @@ end
 def failed_no_inputs_given; "# AI からのコメント\n\n未踏ジュニアに興味を持っていただきありがとうございます！私は提案書の概要文にコメントをする実験的な AI です。(非公式)\n\n「サンプル概要文を入力する」ボタンを押してから、「AI に概要文を見てもらう」ボタンを押すと、私のコメントを確認できます。ぜひ試してみてくださいね！" end
 def failed_longer_than_200; "# AI からのコメント\n\nすみません！概要文は200文字以内となります。200文字以内に収めてから、再度「AI の文章をみてもらう」ボタンを押していただけると嬉しいです。" end
 def failed_after_deadline;  "# AI からのコメント\n\nすみません！2023年度の未踏ジュニア応募〆切は2023年4月8日 23:59 までとなるため、それに伴って実験的な本システムの提供も終了いたしました。\n\nあらためて、未踏ジュニアに興味を持っていただきありがとうございました！" end
+def failed_on_api_response;  "# AI からのコメント\n\nすみません！現在 ChatGPT へのリクエストが混み合っているようで、応答が返って来ないようです。\n\nお手数をかけてしまって申し訳ありませんが、時間を置いてから再度チャレンジしていただけると幸いです。" end
 
 def is_after_deadline?
   t1 = Time.new(2023, 4, 8, 23, 59, 59, "+09:00")
@@ -76,7 +79,15 @@ def chat_gpt_request(user_query)
     temperature: 0.7,
     #stream: True,
   }
-  response = client.chat(parameters: params)
+
+  # This may cause: Net::ReadTimeout - Net::ReadTimeout with #<TCPSocket:(closed)> error
+  begin
+    response = client.chat(parameters: params)
+  rescue => e
+    p e
+    return failed_on_api_response
+  end
+
 
   p_tokens = response.dig 'usage', 'prompt_tokens'
   c_tokens = response.dig 'usage', 'completion_tokens'
