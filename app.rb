@@ -105,7 +105,7 @@ def chat_gpt_request(user_query)
     puts "掛かった時間: #{(end_time - stt_time).floor(1)}秒"
     return failed_on_http_timeout
   end
-  # Return if 500 error happens for some reason
+  # Return if 500 error happens for some reason. Use wrong API key for debugging.
   return failed_on_server_error if response.to_s.include? "Internal Server Error"
 
   p_tokens = response.dig 'usage', 'prompt_tokens'
