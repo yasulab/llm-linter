@@ -1,274 +1,138 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>提案書の概要文に AI がコメントする実験的なシステム（非公式）</title>
-  <style>
-    body {
-      font-family: 'Noto Sans JP', sans-serif;
-      margin:  0;
-      padding: 0;
-      margin-bottom: 100px;
-    }
-    p {
-      color: #242424;
-      font-family: 'Noto Sans JP', sans-serif;
-      font-size: 98%;
-    }
-    a {
-      text-decoration: none;
-    }
-    a:hover{
-      text-decoration: underline;
-    }
-    
-    textarea, #resultDiv {
-      font-family: 'Noto Sans JP', sans-serif;
-      font-size: 16px;
-    }
-    button {
-      margin-top:    0.5em;
-      margin-right:  0.5em;
-      margin-bottom: 0.5em;
-    }
-    /* スマホの画面サイズのときに適用するスタイル */
-    @media screen and (max-width: 768px) {
-      button {
-        font-size: 1.1em;     /* フォントサイズを大きくする */
-        padding: 0.5em 0.9em; /* パディングを追加してボタンを大きく見せる */
-	display: block;       /* ボタンをブロック要素に変更 */
-      }
-      #inputText {
-        height: 300px; /* 入力画面の高さを1.5倍にする */
-      }
-    }
+<ul>
+  <li><a href='https://jr.mitou.org/download' target='_blank' rel='noopener'>未踏ジュニア提案書</a>の概要文 (200文字以内) に <a href='https://twitter.com/hashtag/ChatGPT' target='_blank' rel='noopener'>#ChatGPT</a> がコメントする実験的なシステムです。<br class='ignore-pc'><small>(※ コメントの「正しさ」が保証されず、場合によっては改悪になる可能性もあるため、非公式のツールです)</small></li>
+  <li><a href='https://twitter.com/hashtag/ChatGPT' target='_blank' rel='noopener'>#ChatGPT</a> の機能を大幅に制限しています。<a href='https://chat.openai.com/chat' target='_blank' rel='noopener'>OpenAI アカウントを作る</a>と制限無しで使えます。<br class='ignore-pc'><small>(※ <a href='https://openai.com/policies/terms-of-use#:~:text=You%20must%20be%20at%20least%2013%20years%20old%20to%20use%20the%20Services.%20If%20you%20are%20under%2018%20you%20must%20have%20your%20parent%20or%20legal%20guardian%E2%80%99s%20permission%20to%20use%20the%20Services.' target='_blank' rel='noopener'>OpenAI の利用規約</a>に基づき保護者から許可を取る、もしくは保護者が代わりにご利用ください)</small>      </li>
+  <li>タイトルについては「<a href='https://zenn.dev/reputeless/articles/idea-mitoujr' target='_blank' rel='noopener'>未踏ジュニア、伝わる提案書を作る 5 つのコツ</a>」をお読みください。</li>
+</ul>
 
-    #container{
-      margin-top:    1.0em;
-      margin-bottom: 1.0em;
-      margin-left:   auto;
-      margin-right:  auto;
-      padding-left:  0.5em;
-      padding-right: 0.5em;
-      
-      max-width: 840px;
-    }
-    .loader {
-      border: 5px solid #f3f3f3;
-      border-top: 5px solid #3498db;
-      border-radius: 50%;
-      width:  30px;
-      height: 30px;
-      animation: spin 1s linear infinite;
-      display: inline-block;
-      vertical-align: middle;
-    }
-    @keyframes spin {
-      0%   { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    textarea, #result {
-      width:  100%;
-      height: 200px;
-      box-sizing: border-box;
-      border: 1px solid #ccc;
-      padding:    1.0em;
-      margin-top: 1.0em;
-      min-height: 100px;
-    }
-    #result {
-      height: 100%;
-      overflow-y: scroll;
-      margin-top: 10px;
-      position: relative;
-    }
-    #result-placeholder {
-      color: #777;
-    }
+<textarea id="inputText" rows="8" cols="80" maxlength="200" placeholder="提案書の概要文を入力してください&#10;（上限：200文字）"></textarea><br>
+<button id="submitButton">AI に概要文を見てもらう</button>
+<button id="sampleButton">サンプル概要文を入力する</button>
+<span id="inputLength">0</span> / 200
+<div id="result"><span id='result-placeholder'>ココに AI のコメントが表示されます</span></div>
+<div class="loader" style="display: none;"></div>
 
-    footer {
-      color: #777;
-      opacity: 0.7;
-      margin:  0 auto;
-      margin-top:    30px;
-      margin-bottom: 100px;
-      margin-left:   -1px;
-      width:   100%;
-      text-align: center;
-    }
-
-    ul {
-      padding-left:  20px;
-      padding-right: 5px;
-    }
-    li {
-      margin-bottom: 10px;
-    }
-
-    @media screen and (max-width: 848px) {
-      br.ignore-pc {
-	display: none;
-      }
-    }
-  </style>
-  <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
-</head>
-
-<body>
-  <div id="container">
-    <ul>
-      <li><a href='https://jr.mitou.org/download' target='_blank' rel='noopener'>未踏ジュニア提案書</a>の概要文 (200文字以内) に <a href='https://twitter.com/hashtag/ChatGPT' target='_blank' rel='noopener'>#ChatGPT</a> がコメントする実験的なシステムです。<br class='ignore-pc'><small>(※ コメントの「正しさ」が保証されず、場合によっては改悪になる可能性もあるため、非公式のツールです)</small></li>
-      <li><a href='https://twitter.com/hashtag/ChatGPT' target='_blank' rel='noopener'>#ChatGPT</a> の機能を大幅に制限しています。<a href='https://chat.openai.com/chat' target='_blank' rel='noopener'>OpenAI アカウントを作る</a>と制限無しで使えます。<br class='ignore-pc'><small>(※ <a href='https://openai.com/policies/terms-of-use#:~:text=You%20must%20be%20at%20least%2013%20years%20old%20to%20use%20the%20Services.%20If%20you%20are%20under%2018%20you%20must%20have%20your%20parent%20or%20legal%20guardian%E2%80%99s%20permission%20to%20use%20the%20Services.' target='_blank' rel='noopener'>OpenAI の利用規約</a>に基づき保護者から許可を取る、もしくは保護者が代わりにご利用ください)</small>      </li>
-      <li>タイトルについては「<a href='https://zenn.dev/reputeless/articles/idea-mitoujr' target='_blank' rel='noopener'>未踏ジュニア、伝わる提案書を作る 5 つのコツ</a>」をお読みください。</li>
-    </ul>
-
-    <textarea id="inputText" rows="8" cols="80" maxlength="200" placeholder="提案書の概要文を入力してください&#10;（上限：200文字）"></textarea><br>
-    <button id="submitButton">AI に概要文を見てもらう</button>
-    <button id="sampleButton">サンプル概要文を入力する</button>
-    <span id="inputLength">0</span> / 200
-    <div id="result"><span id='result-placeholder'>ココに AI のコメントが表示されます</span></div>
-    <div class="loader" style="display: none;"></div>
-
-    <div id="reaction-buttons" style="display: none;">
-      <span>この回答はお役に立ちましたか？</span>
-      <button id="positiveReaction" onclick="sendReaction('up')">👍</button>
-      <button id="negativeReaction" onclick="sendReaction('down')">👎</button>
+<div id="reaction-buttons" style="display: none;">
+  <span>この回答はお役に立ちましたか？</span>
+v  <button id="positiveReaction" onclick="sendReaction('up')">👍</button>
+  <button id="negativeReaction" onclick="sendReaction('down')">👎</button>
     </p>
-  </div>
+</div>
 
-  <footer>
-    <p>
-      <small>Created by <a href='https://twitter.com/yasulab/status/1636938702290292737' target='_blank' rel='noopener'>@yasulab</a> for you. Powered by <a href='https://openai.com/product/gpt-4' target='_blank' rel='noopener'>GPT-4</a>.<br>(<a href="https://github.com/yasulab/gpt-linter" target="_blank" rel="noopener">GitHub</a>)</small>
-    </p>
-  </footer>
-  <script>
-   let reactionSubmitted = false;
-   function sendReaction(reaction) {
-     fetch('/reaction', {
-       method: 'POST',
-       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-       //headers: { 'Content-Type': 'application/json' },
-       body: new URLSearchParams({ reaction: reaction })
-       //body: JSON.stringify({ reaction: reaction })
-     }).then(response => {
-       if (response.ok) {
-	 //console.log(`リアクション: ${reaction}`);
-	 reactionSubmitted = true;
-	 disableReactionButtons();
-       } else {
-	 console.error('リアクションの送信に失敗しました');
-       }
-     });
-   }
-   
-    // These texts come from published samples here:
-    // https://jr.mitou.org/download#sample
-    const sampleTexts = [
-      "自宅で手軽に筋トレができるVRソフトです。VRゴーグルを装着し、椅子などを補助に利用し、自分の体重(自重)でトレーニングができます。激しく動く有酸素運動とは逆で、この3部作は美しい映像と音楽に包まれてリラックスしながらゆっくり動くワークアウトなので幅広い年代の方の運動能力、基礎体力の向上、健康維持に役立ちます。省スペースでもあります。",
-      "逆方向に動く2つのキューブを同時にゴールに持っていく、シンプルなパズルゲームです。ルールの簡単さに対し、実は非常に頭をつかうゲームで、論理力の育成に役立ちます。現行のバージョンをゲームデザインを中心に改良し、老若男女問わず幅広い層に受け入れられるような、リリースが可能なレベルのゲームにする事が目標です。",
-      "編模様は編み物を支援するツールです。編み物の本などは、モノクロで図も小さく自分の考えた絵では編むことはできません。そこで自分の描いたイラストを編もうとすると方眼紙にイラストを描いてそれを数えながら編んでいくので気が遠くなるほどのの手間がかかります。編模様は自分で描いた絵を編み図にカラーで変換し、色が変わるまでの数などを表示し編み間違いを減らし、オリジナルの作品を効率的に作れるようにします。",
-      "DetExploit は WMI (Windows Management Instrumentation)やレジストリなどを参照することによって取得したシステム上のアプリケーションの情報と様々なデータベースから取得した情報を照合することによってセキュリティ的に脆弱なソフトウェアを検知し、ユーザーに通知するソフトウェアです。",
-      "「Visible」はNode.jsで開発されるオープンソースのWebアクセシビリティーテストツールです。WebサイトのURLやソースコードからアクセシビリティー上の問題点を検出するほか、アルゴリズムや機械学習プラットフォームを有効活用して修正を提案します。",
-      "Merはリコーダーを基にして、色々な機能を搭載したウィンドシンセサイザーです。発音が簡単なので初心者でも完成度の高い演奏を体験できますし、自然な呼吸を応用して演奏するので健康に良いです。更に、サミング奏法とオクターブジャンプ奏法で高速かつ正確な演奏ができます。加えて、MIDI出力ができるので、ユーザーの好きな音源で演奏できます。また、運指や息の感度を変更したり、アルペジオを割り当てたりできます。"
-    ];
+<script>
+ let reactionSubmitted = false;
+ function sendReaction(reaction) {
+   fetch('/reaction', {
+     method: 'POST',
+     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+     //headers: { 'Content-Type': 'application/json' },
+     body: new URLSearchParams({ reaction: reaction })
+     //body: JSON.stringify({ reaction: reaction })
+   }).then(response => {
+     if (response.ok) {
+       //console.log(`リアクション: ${reaction}`);
+       reactionSubmitted = true;
+       disableReactionButtons();
+     } else {
+       console.error('リアクションの送信に失敗しました');
+     }
+   });
+ }
+ 
+ // These texts come from published samples here:
+ // https://jr.mitou.org/download#sample
+ const sampleTexts = [
+   "自宅で手軽に筋トレができるVRソフトです。VRゴーグルを装着し、椅子などを補助に利用し、自分の体重(自重)でトレーニングができます。激しく動く有酸素運動とは逆で、この3部作は美しい映像と音楽に包まれてリラックスしながらゆっくり動くワークアウトなので幅広い年代の方の運動能力、基礎体力の向上、健康維持に役立ちます。省スペースでもあります。",
+   "逆方向に動く2つのキューブを同時にゴールに持っていく、シンプルなパズルゲームです。ルールの簡単さに対し、実は非常に頭をつかうゲームで、論理力の育成に役立ちます。現行のバージョンをゲームデザインを中心に改良し、老若男女問わず幅広い層に受け入れられるような、リリースが可能なレベルのゲームにする事が目標です。",
+   "編模様は編み物を支援するツールです。編み物の本などは、モノクロで図も小さく自分の考えた絵では編むことはできません。そこで自分の描いたイラストを編もうとすると方眼紙にイラストを描いてそれを数えながら編んでいくので気が遠くなるほどのの手間がかかります。編模様は自分で描いた絵を編み図にカラーで変換し、色が変わるまでの数などを表示し編み間違いを減らし、オリジナルの作品を効率的に作れるようにします。",
+   "DetExploit は WMI (Windows Management Instrumentation)やレジストリなどを参照することによって取得したシステム上のアプリケーションの情報と様々なデータベースから取得した情報を照合することによってセキュリティ的に脆弱なソフトウェアを検知し、ユーザーに通知するソフトウェアです。",
+   "「Visible」はNode.jsで開発されるオープンソースのWebアクセシビリティーテストツールです。WebサイトのURLやソースコードからアクセシビリティー上の問題点を検出するほか、アルゴリズムや機械学習プラットフォームを有効活用して修正を提案します。",
+   "Merはリコーダーを基にして、色々な機能を搭載したウィンドシンセサイザーです。発音が簡単なので初心者でも完成度の高い演奏を体験できますし、自然な呼吸を応用して演奏するので健康に良いです。更に、サミング奏法とオクターブジャンプ奏法で高速かつ正確な演奏ができます。加えて、MIDI出力ができるので、ユーザーの好きな音源で演奏できます。また、運指や息の感度を変更したり、アルペジオを割り当てたりできます。"
+ ];
 
-   function setInputText(text) {
-      const inputText = document.getElementById("inputText");
-      inputText.value = text;
-      updateInputLength();
-    }
+ function setInputText(text) {
+   const inputText = document.getElementById("inputText");
+   inputText.value = text;
+   updateInputLength();
+ }
 
-    function updateInputLength() {
-      const inputText   = document.getElementById("inputText");
-      const inputLength = document.getElementById("inputLength");
-      inputLength.textContent = inputText.value.length;
-    }
+ function updateInputLength() {
+   const inputText   = document.getElementById("inputText");
+   const inputLength = document.getElementById("inputLength");
+   inputLength.textContent = inputText.value.length;
+ }
 
-    document.getElementById("inputText").addEventListener("input_text", updateInputLength);
+ document.getElementById("inputText").addEventListener("input_text", updateInputLength);
 
-    document.getElementById("sampleButton").onclick = function() {
-      const randomIndex = Math.floor(Math.random() * sampleTexts.length);
-      setInputText(sampleTexts[randomIndex]);
-    };
+ document.getElementById("sampleButton").onclick = function() {
+   const randomIndex = Math.floor(Math.random() * sampleTexts.length);
+   setInputText(sampleTexts[randomIndex]);
+ };
 
-    function showThinkingAnimation() {
-      const resultDiv = document.getElementById("result");
-      resultDiv.innerHTML = '<div class="loader"></div><p>AI がコメントを考えています...</p>';
-    }
-    function hideThinkingAnimation() {
-      const resultDiv = document.getElementById("result");
-      //resultDiv.innerHTML = 'ココに AI のコメントが表示されます';
-    }
-    function showReactionButtons() {
-      document.getElementById("reaction-buttons").style.display = "block";
-    }
-    function hideReactionButtons() {
-      document.getElementById("reaction-buttons").style.display = "none";
-    }
-    function activateReactionButtons() {
-      document.getElementById('positiveReaction').disabled = false;
-      document.getElementById('negativeReaction').disabled = false;
-    }
-    function disableReactionButtons() {
-      document.getElementById('positiveReaction').disabled = true;
-      document.getElementById('negativeReaction').disabled = true;
-    }
+ function showThinkingAnimation() {
+   const resultDiv = document.getElementById("result");
+   resultDiv.innerHTML = '<div class="loader"></div><p>AI がコメントを考えています...</p>';
+ }
+ function hideThinkingAnimation() {
+   const resultDiv = document.getElementById("result");
+   //resultDiv.innerHTML = 'ココに AI のコメントが表示されます';
+ }
+ function showReactionButtons() {
+   document.getElementById("reaction-buttons").style.display = "block";
+ }
+ function hideReactionButtons() {
+   document.getElementById("reaction-buttons").style.display = "none";
+ }
+ function activateReactionButtons() {
+   document.getElementById('positiveReaction').disabled = false;
+   document.getElementById('negativeReaction').disabled = false;
+ }
+ function disableReactionButtons() {
+   document.getElementById('positiveReaction').disabled = true;
+   document.getElementById('negativeReaction').disabled = true;
+ }
 
-    const md = window.markdownit();
-    let dotAnimation;
+ const md = window.markdownit();
+ let dotAnimation;
 
-    document.getElementById("submitButton").onclick = async function() {
-      const inputText = document.getElementById("inputText").value;
-      //if (inputText.length === 0 || inputText.length > 500) {
-      //  return;
-      //}
-      this.disabled = true;
-      showThinkingAnimation();
-      hideReactionButtons();
+ document.getElementById("submitButton").onclick = async function() {
+   const inputText = document.getElementById("inputText").value;
+   //if (inputText.length === 0 || inputText.length > 500) {
+   //  return;
+   //}
+   this.disabled = true;
+   showThinkingAnimation();
+   hideReactionButtons();
 
-      // APIリクエストを行う処理をここに追加してください。
-      // Send request and display ChatGPT response
-      const response = await fetch('/gpt', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({ input_text: inputText })
-      });
-      const data = await response.json();
-      activateReactionButtons();
+   // APIリクエストを行う処理をここに追加してください。
+   // Send request and display ChatGPT response
+   const response = await fetch('/gpt', {
+     method: 'POST',
+     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+     body: new URLSearchParams({ input_text: inputText })
+   });
+   const data = await response.json();
+   activateReactionButtons();
 
-      // APIリクエストが完了したら、次のようにコメントを表示します。
-      const resultDiv = document.getElementById("result");
-      resultDiv.innerHTML = md.render(data.response); // Convert Markdown to HTML and display
+   // APIリクエストが完了したら、次のようにコメントを表示します。
+   const resultDiv = document.getElementById("result");
+   resultDiv.innerHTML = md.render(data.response); // Convert Markdown to HTML and display
 
-      this.disabled = false;
-      hideThinkingAnimation();
-      showReactionButtons();
-    };
+   this.disabled = false;
+   hideThinkingAnimation();
+   showReactionButtons();
+ };
 
-    const inputText = document.getElementById('inputText');
-    const charCount = document.getElementById('inputLength');
+ const inputText = document.getElementById('inputText');
+ const charCount = document.getElementById('inputLength');
 
-    // 入力画面の内容が変更されるたびに文字数を更新する関数
-    function updateCharCount() {
-      charCount.innerText = inputText.value.length;
-    }
+ // 入力画面の内容が変更されるたびに文字数を更新する関数
+ function updateCharCount() {
+   charCount.innerText = inputText.value.length;
+ }
 
-    // 入力画面の内容が変更されたときに updateCharCount 関数を実行
-    inputText.addEventListener('input', updateCharCount);
+ // 入力画面の内容が変更されたときに updateCharCount 関数を実行
+ inputText.addEventListener('input', updateCharCount);
 
-    // 初期の文字数を設定
-    updateCharCount();
-  </script>
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H2QMV61YFH"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-H2QMV61YFH');
-  </script>
-</body>
-</html>
+ // 初期の文字数を設定
+ updateCharCount();
+</script>

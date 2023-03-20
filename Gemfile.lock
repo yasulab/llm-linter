@@ -8,10 +8,12 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    erubis (2.7.0)
     httparty (0.21.0)
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
     mini_mime (1.1.2)
+    multi_json (1.15.0)
     multi_xml (0.6.0)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
@@ -21,13 +23,24 @@ GEM
     rack (2.2.6.4)
     rack-protection (3.0.5)
       rack
+    rdiscount (2.2.7)
     ruby2_keywords (0.0.5)
     sinatra (3.0.5)
       mustermann (~> 3.0)
       rack (~> 2.2, >= 2.2.4)
       rack-protection (= 3.0.5)
       tilt (~> 2.0)
+    sinatra-contrib (3.0.5)
+      multi_json
+      mustermann (~> 3.0)
+      rack-protection (= 3.0.5)
+      sinatra (= 3.0.5)
+      tilt (~> 2.0)
     sinatra-cors (1.2.0)
+    sinatra-rdiscount (1.0.0.1)
+      erubis (>= 2.6.5)
+      rdiscount (>= 1.5.8)
+      sinatra
     tilt (2.1.0)
 
 PLATFORMS
@@ -39,7 +52,9 @@ DEPENDENCIES
   puma
   ruby-openai!
   sinatra
+  sinatra-contrib
   sinatra-cors
+  sinatra-rdiscount
 
 BUNDLED WITH
    2.4.8
