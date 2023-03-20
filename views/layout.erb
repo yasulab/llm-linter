@@ -121,7 +121,24 @@
     </div>
 
     <footer>
-      <p><small>Created by <a href='https://twitter.com/yasulab/status/1636938702290292737' target='_blank' rel='noopener'>@yasulab</a> for you. Powered by <a href='https://openai.com/product/gpt-4' target='_blank' rel='noopener'>GPT-4</a>.<br>[<a href="/" target="_blank" rel="noopener">Top</a> | <a href="https://github.com/yasulab/gpt-linter" target="_blank" rel="noopener">GitHub</a> | <a href="/terms" target="_blank" rel="noopener">Terms</a>]</small></p>
+      <p><small>
+	Created by <a href='https://twitter.com/yasulab/status/1636938702290292737' target='_blank' rel='noopener'>@yasulab</a> for you. Powered by <a href='https://openai.com/product/gpt-4' target='_blank' rel='noopener'>GPT-4</a>.<br>
+	[
+	<% if request.env["PATH_INFO"] == '/' %>
+	  Top
+	<% else %>
+	  <a href="/">Top</a>
+	<% end %>
+	|
+	<a href="https://github.com/yasulab/gpt-linter" target="_blank" rel="noopener">GitHub</a>
+	|
+	<% if request.env["PATH_INFO"] == '/terms' %>
+	  Terms
+	<% else %>
+	  <a href="/terms" target="_blank" rel="noopener">Terms</a>
+	<% end %>
+	]
+      </small></p>
     </footer>
 
     <!-- Google tag (gtag.js) -->
