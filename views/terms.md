@@ -13,9 +13,9 @@
 
 ## 入力データ・出力データについて
 
-本機能にユーザーが入力したデータおよび出力されたコメントのデータのログは取っていません。ただし、API 利用に掛かった料金（OpenAI API が返すトークン数）、およびコメント出力後の表示されるリアクション（良かった・悪かったのフィードバック）など、利用者の属性に紐づかないログ、および利用者が任意で送付したログについては出力しています。
+<b>本機能にユーザーが入力したデータ、および AI が出力したコメントのデータのログは取っていません。</b>ただし、API 利用に掛かった料金（OpenAI API が返すトークン数）、およびコメント出力後に表示されるリアクション（良かった・悪かったのフィードバック）など、利用者の属性に紐づかないログ、および利用者が任意で送付したログについては出力しています。
 
-詳細を確認する: [https://github.com/yasulab/gpt-linter/blob/main/app.rb](https://github.com/yasulab/gpt-linter/blob/main/app.rb)
+ログ出力部分のコードを確認する: [https://github.com/yasulab/gpt-linter/blob/main/app.rb](https://github.com/yasulab/gpt-linter/blob/main/app.rb)
 
 <br>
 
