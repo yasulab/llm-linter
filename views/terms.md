@@ -45,7 +45,7 @@
 
 ## Terms の更新履歴について
 
-本ページの更新履歴については以下の URL かご確認いただけます。
+本ページの更新履歴については以下の URL からご確認いただけます。
 
 更新履歴を確認する: [https://github.com/yasulab/gpt-linter/commits/main/views/terms.md](https://github.com/yasulab/gpt-linter/commits/main/views/terms.md)
 
