@@ -34,7 +34,7 @@
 
 また本サイトでは、それぞれの利用者に合わせた情報を提供するために Cookie を使用することがありますが、これにより個人を特定できる情報が収集されることはありません。Cookie の受け入れを希望されない場合は、ブラウザの設定で Cookie を拒否または破棄できます。ただし、Cookie を無効化することで、本サイトの一部の機能やコンテンツをご利用いただけなくなる場合があります。
 
-また、本サイトでは、利用者に提供するサービスの品質向上ならびに利用目的の達成のために、Google 社が提供する [Google Analytics](https://marketingplatform.google.com/intl/ja/about/analytics/) を使用しております。Google Analytics の利用規約および Google 社のプライバシーポリシーについては下記ページからご確認いただけます。
+また、本サイトでは、利用者に提供する本サイトから提供する機能の品質向上のために、Google 社が提供する [Google Analytics](https://marketingplatform.google.com/intl/ja/about/analytics/) を使用しております。Google Analytics の利用規約および Google 社のプライバシーポリシーについては下記ページからご確認いただけます。
 
 - [Google Analytics 利用規約](https://marketingplatform.google.com/about/analytics/terms/jp/)
 - [Google - ポリシーと規約](https://policies.google.com/?hl=ja)
@@ -47,7 +47,7 @@
 
 本ページの更新履歴については以下の URL かご確認いただけます。
 
-更新履歴を確認する: [https://github.com/yasulab/gpt-linter/blob/main/views/temrs.md](https://github.com/yasulab/gpt-linter/blob/main/views/temrs.md)
+更新履歴を確認する: [https://github.com/yasulab/gpt-linter/commits/main/views/terms.md](https://github.com/yasulab/gpt-linter/commits/main/views/terms.md)
 
 <br>
 
@@ -55,7 +55,7 @@
 
 データの取り扱いについてご意見・ご質問などがありましたら、下記の連絡先までお問い合わせください。
 
-〒169-0075 東京都新宿区高田馬場1-28-10 三慶ビル4階 CASE Shinjuku
+〒169-0075 東京都新宿区高田馬場1-28-10 三慶ビル4階 CASE Shinjuku<br>
 安川 要平 [@yasulab](https://twitter.com/yasulab)
 
 <br>
