@@ -1,6 +1,8 @@
 require 'sinatra'
 require 'sinatra/cors'
 require 'sinatra/reloader' if ENV['SINATRA_LOCALHOST']
+require 'sinatra/rdiscount'
+
 require 'ruby/openai'
 require 'cgi'
 
@@ -19,9 +21,8 @@ set :allow_methods,  'GET,HEAD,POST'
 set :allow_headers,  'content-type,if-modified-since'
 set :expose_headers, 'location,link'
 
-get '/'       do; erb :index;  end
-get '/policy' do; erb :policy; end
-get '/terms'  do; erb :terms;  end
+get '/'      do; erb      :index, layout_engine: :erb ;  end
+get '/terms' do; markdown :terms, layout_engine: :erb ;  end
 
 post '/gpt' do
   input_text = params[:input_text]
