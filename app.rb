@@ -74,8 +74,8 @@ def chat_gpt_request(user_query)
 
   prompt = get_prompt()
   client = OpenAI::Client.new
-  model  = ENV['SINATRA_LOCALHOST'].nil? ? 'gpt-4' : 'gpt-3.5-turbo'
-  #model  = 'gpt-4'
+  #model  = ENV['SINATRA_LOCALHOST'].nil? ? 'gpt-4' : 'gpt-3.5-turbo'
+  model  = 'gpt-4'
   #model  = 'gpt-3.5-turbo'
   params = {
     # https://platform.openai.com/docs/models/gpt-4
