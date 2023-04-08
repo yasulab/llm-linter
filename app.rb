@@ -61,7 +61,7 @@ def failed_on_http_timeout;  "# AI からのコメント\n\nすみません！�
 def failed_on_server_error;  "# AI からのコメント\n\nすみません！現在 ChatGPT へのリクエストが混み合っているようで、先ほどエラーが返って来ました。\n\nお手数をかけてしまって申し訳ありませんが、時間を置いてから再度チャレンジしていただけると幸いです。" end
 
 def is_after_deadline?
-  t1 = Time.new(2023, 4, 8, 23, 59, 59, "+09:00")
+  t1 = Time.new(2023, 4, 9, 23, 59, 59, "+09:00")
   t2 = Time.now.localtime("+09:00")
   puts t2
   t1 < t2
