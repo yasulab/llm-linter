@@ -4,7 +4,8 @@
 
 [#ChatGPT](https://twitter.com/hashtag/ChatGPT) の機能を大幅に制限しています。[OpenAI アカウントを作る](https://chat.openai.com/chat)と制限無しで使えます。(:warning: [OpenAI の利用規約](https://openai.com/policies/terms-of-use#:~:text=You%20must%20be%20at%20least%2013%20years%20old%20to%20use%20the%20Services.%20If%20you%20are%20under%2018%20you%20must%20have%20your%20parent%20or%20legal%20guardian%E2%80%99s%20permission%20to%20use%20the%20Services.)に基づき保護者から許可を取る、もしくは保護者が代わりにご利用ください)
 
-**💤 追記：2023年度の未踏ジュニア応募〆切に伴い、本サービスも稼働停止いたしました。ソースコードは当時のままに残してあるので、実装例の１つとしてご参考になれば幸いです。**
+- **🙏 追記：[2023年度の未踏ジュニア応募〆切](https://jr.mitou.org/guideline)に伴い、本サービスも稼働停止いたしました。ソースコードは当時のままに残してあるので、実装例の１つとしてご参考になれば幸いです。**
+- **🆕 追記：2023年度より[他の支援プログラム](https://jr.mitou.org/opportunities)紹介ページを公開しました。年齢不問の支援プログラムもあるので、もし興味あるプログラムがあれば是非チャレンジしてみてください。**
 
 
 <br>
