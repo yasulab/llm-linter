@@ -23,6 +23,13 @@ https://user-images.githubusercontent.com/155807/225811069-c127f42f-4f23-48d0-b7
 
 <br>
 
+## 関連 URL
+- [:octocat: mitou/jr.mitou.org](https://github.com/mitou/jr.mitou.org) (Ruby + Jekyll)
+- [🎓 社員研修 × AIサポートで効率的に学習 - Railsチュートリアル](https://note.com/yasslab/n/n466d7bd7e5b3) (note)
+- [📜 東京都立の大学院で24時間対応の Teaching Assistant (ChatGPT) を用意して分かったこと](https://speakerdeck.com/yasslab/learn-to-code-with-chatgpt) (Speaker Deck)
+
+<br>
+
 ## Credits
 
 - License: [The MIT License](https://github.com/yasulab/gpt-linter/blob/main/LICENSE.md)
