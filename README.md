@@ -27,6 +27,7 @@ https://user-images.githubusercontent.com/155807/225811069-c127f42f-4f23-48d0-b7
 - [:octocat: mitou/jr.mitou.org](https://github.com/mitou/jr.mitou.org) (Ruby + Jekyll)
 - [🎓 社員研修 × AIサポートで効率的に学習 - Railsチュートリアル](https://note.com/yasslab/n/n466d7bd7e5b3) (note)
 - [📜 東京都立の大学院で24時間対応の Teaching Assistant (ChatGPT) を用意して分かったこと](https://speakerdeck.com/yasslab/learn-to-code-with-chatgpt) (Speaker Deck)
+- [📖 OpenAI APIをRubyアプリケーションに統合する（翻訳）](https://techracho.bpsinc.jp/hachi8833/2023_07_31/132198) (TechRacho)
 
 <br>
 
