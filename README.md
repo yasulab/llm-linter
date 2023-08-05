@@ -19,7 +19,7 @@ https://user-images.githubusercontent.com/155807/225811069-c127f42f-4f23-48d0-b7
 ## 対談動画 @ YouTube
 他の未踏ジュニア関係者とともに、お互いに ChatGPT / OpenAI を組み合わせた作品の座談会を実施しました。こちらも合わせてご参考になれば嬉しいです。 https://twitter.com/yasulab/status/1643259359420641282
 
-[![未踏ジュニアGPT座談会](https://github.com/yasulab/gpt-linter/assets/155807/5b3f4dc5-05e7-4d61-be3e-c1ec46340c06)](https://twitter.com/yasulab/status/1643259359420641282)
+[![未踏ジュニアGPT座談会](https://github.com/yasulab/llm-linter/assets/155807/5b3f4dc5-05e7-4d61-be3e-c1ec46340c06)](https://twitter.com/yasulab/status/1643259359420641282)
 
 <br>
 
@@ -32,5 +32,5 @@ https://user-images.githubusercontent.com/155807/225811069-c127f42f-4f23-48d0-b7
 
 ## Credits
 
-- License: [The MIT License](https://github.com/yasulab/gpt-linter/blob/main/LICENSE.md)
+- License: [The MIT License](https://github.com/yasulab/llm-linter/blob/main/LICENSE.md)
 - Copyright: &copy; [@yasulab](https://twitter.com/yasulab)
