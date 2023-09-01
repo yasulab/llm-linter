@@ -1,0 +1,9 @@
+# Example of a `.gitattributes` file which reclassifies `.rb` files as Java:
+#
+#   *.rb linguist-language=Java
+#
+# See: https://github.com/github-linguist/linguist/blob/master/docs/overrides.md
+
+# Mark Jekyll-based markups as Ruby
+public/* linguist-language=Ruby
+views/** linguist-language=Ruby
